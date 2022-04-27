@@ -1,5 +1,4 @@
 import math
-import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 from kneed.data_generator import DataGenerator as dg
@@ -295,26 +294,6 @@ def test_x_equals_y():
     y = [1] * len(x)
     with pytest.warns(RuntimeWarning):
         kl = KneeLocator(x, y)
-
-
-def test_plot_knee_normalized():
-    """Test that plotting is functional"""
-    x, y = dg.figure2()
-    kl = KneeLocator(x, y, S=1.0, curve="concave", interp_method="interp1d")
-    num_figures_before = plt.gcf().number
-    kl.plot_knee_normalized()
-    num_figures_after = plt.gcf().number
-    assert num_figures_before < num_figures_after
-
-
-def test_plot_knee():
-    """Test that plotting is functional"""
-    x, y = dg.figure2()
-    kl = KneeLocator(x, y, S=1.0, curve="concave", interp_method="interp1d")
-    num_figures_before = plt.gcf().number
-    kl.plot_knee()
-    num_figures_after = plt.gcf().number
-    assert num_figures_before < num_figures_after
 
 
 def test_logistic():
